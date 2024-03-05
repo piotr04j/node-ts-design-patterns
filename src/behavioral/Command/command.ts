@@ -3,15 +3,15 @@ interface Command {
 }
 
 class SaveCommand implements Command {
-  private _receiver: HandleRequest
-  private _payload: string
+  private readonly _receiver: HandleRequest
+  private readonly _payload: string
 
-  constructor(receiver: HandleRequest, payload: string) {
+  constructor (receiver: HandleRequest, payload: string) {
     this._receiver = receiver
     this._payload = payload
   }
 
-  execute() {
+  execute () {
     this._receiver.handle(this._payload)
   }
 }
@@ -19,17 +19,17 @@ class SaveCommand implements Command {
 class Button {
   private _saveCommand!: Command
 
-  setSave(command: Command) {
+  setSave (command: Command) {
     this._saveCommand = command
   }
 
-  onClick() {
+  onClick () {
     this._saveCommand.execute()
   }
 }
 
 class HandleRequest {
-  handle(payload: string) {
+  handle (payload: string) {
     console.log('Request with payload: ' + payload + ' was handled!')
   }
 }
